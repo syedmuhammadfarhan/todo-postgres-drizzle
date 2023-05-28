@@ -8,7 +8,8 @@ export async function GET(request: NextRequest) {
         await sql`CREATE TABLE IF NOT EXISTS Todos(id serial primary key, Task varchar(255))`
 
         const res = await db.select().from(todoTable)
-        return NextResponse.json({ message: "Todos Table created With Two Fields Id and Task" });        
+        // console.log(res)
+        return NextResponse.json(res);        
     } catch (error) {
         console.log((error as {message: string}).message)
         return NextResponse.json({message: (error as {message: string}).message})
