@@ -25,7 +25,7 @@ export default async function TodoList() {
   return (
     <>
       {res.map((items, i) => (
-        <div key={i} className="bg-gray-100 py-4 px-4 flex items-center shadow rounded-lg gap-x-3 my-5">
+        <div key={i} className="bg-gray-100 py-4 px-4 flex items-center shadow rounded-lg gap-x-3 mb-5">
           <div className="h-3 w-3 rounded-full bg-secondary"></div>
           <p className="text-lg font-md">{items.task}</p>
         </div>
