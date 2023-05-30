@@ -4,7 +4,7 @@ import TodoList from "@/components/TodoList";
 export default function Home() {
   return (
     <main className="bg-gradient-to-tr from-primary to-secondary h-screen flex justify-center items-center">
-      <div className="p-4 rounded-xl bg-white w-full max-w-md">
+      <div className="p-4 rounded-xl bg-white w-full max-w-lg">
         {/* @ts-ignore it is used to ignore ts error on any component which is async,TodoList conponent export default function in async*/}
         <TodoList />
         <AddTodo />

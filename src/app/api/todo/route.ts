@@ -1,15 +1,16 @@
 // import { db } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
-import { db, todoTable } from "@/lib/drizzle"
+import { Todo, db, todoTable } from "@/lib/drizzle"
 import { sql } from "@vercel/postgres"
+import { eq } from "drizzle-orm";
 
 
 export async function GET(request: NextRequest) {
+   
     try {
         await sql`CREATE TABLE IF NOT EXISTS Todos(id serial primary key, Task varchar(255))`
 
         const resGET = await db.select().from(todoTable)
-        // console.log(res)
         return NextResponse.json(resGET);        
     } catch (error) {
         console.log((error as {message: string}).message)
@@ -24,7 +25,8 @@ export async function POST(request: NextRequest) {
     
     try {
         if (req.task) {
-             const resPOST = await db.insert(todoTable).values({
+            const resPOST = await db.insert(todoTable).values(
+            {
                 task: req.task,
             }).returning()
             return NextResponse.json({ message: "Data added successfully" })
@@ -39,3 +41,18 @@ export async function POST(request: NextRequest) {
 
 }
 
+
+export async function DELETE(request: NextRequest) {
+    
+    try {
+        const req = await request.json()
+        if (req.id) {
+            const resDELETE = await db.delete(todoTable).where(eq(todoTable.id,req.id)).returning();
+            return NextResponse.json(resDELETE);  
+        }
+    } catch (error) {
+        console.log((error as {message: string}).message)
+        return NextResponse.json({message: (error as {message: string}).message})
+    }
+    
+}
