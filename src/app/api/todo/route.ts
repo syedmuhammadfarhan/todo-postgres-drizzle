@@ -48,8 +48,8 @@ export async function DELETE(request: NextRequest) {
     
     try {
         if (req.id) {
-            const resDELETE = await db.delete(todoTable).where((req.id=id)).returning();
-            return NextResponse.json(req.id)
+            const resDELETE = await db.delete(todoTable).where(eq(todoTable.id,req.id)).returning();
+            return NextResponse.json(resDELETE)
         }
     } catch (error) {
         console.log((error as {message: string}).message)

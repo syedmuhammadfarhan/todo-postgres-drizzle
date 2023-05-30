@@ -2,6 +2,7 @@
 import { Todo, todoTable } from "@/lib/drizzle";
 import React from "react";
 import { MdDelete } from "react-icons/md";
+import { useRouter } from "next/navigation";
 
 const getData = async () => {
   try {
@@ -22,8 +23,9 @@ const getData = async () => {
 };
 
 export default async function TodoList() {
+  const { refresh } = useRouter();
   const res: Todo[] = await getData();
-  console.log(res);
+  // console.log(res);
 
   // const handleDelete = async (id:any) => {
   //   try {
@@ -45,9 +47,9 @@ export default async function TodoList() {
     console.log(`this is`, id);
     try {
       if (id) {
-        const response = await fetch("/api/todo/${id}", {
+        const response = await fetch("/api/todo", {
           method: "DELETE",
-          body: JSON.stringify({ id: id }),
+          body: JSON.stringify({ id: id.id,}),
           headers: {
             "Content-Type": "application/json",
           },
@@ -90,6 +92,3 @@ export default async function TodoList() {
   );
 }
 
-function refresh() {
-  throw new Error("Function not implemented.");
-}
