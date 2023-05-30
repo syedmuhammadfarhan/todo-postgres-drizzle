@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { Todo, todoTable } from "@/lib/drizzle";
 import React from "react";
 import { MdDelete } from "react-icons/md";
@@ -41,12 +41,13 @@ export default async function TodoList() {
   //     console.log("error");
   //   }
   // };
-  const handleDelete = async (id:any) => {
+  const handleDelete = async (id: any) => {
+    console.log(`this is`, id);
     try {
       if (id) {
-        const response = await fetch("/api/todo", {
+        const response = await fetch("/api/todo/${id}", {
           method: "DELETE",
-          body: JSON.stringify({ id }),
+          body: JSON.stringify({ id: id }),
           headers: {
             "Content-Type": "application/json",
           },
@@ -74,7 +75,13 @@ export default async function TodoList() {
           <div className="flex justify-between items-center w-full">
             <p className="text-lg font-md">{items.task}</p>
             <div className="p-1 rounded-lg mr-1 hover:scale-110">
-              <MdDelete size={22} type="button" onClick={() => { handleDelete(items.id) }} />
+              <MdDelete
+                size={22}
+                type="button"
+                onClick={() => {
+                  handleDelete({ id: items.id });
+                }}
+              />
             </div>
           </div>
         </div>
@@ -82,7 +89,6 @@ export default async function TodoList() {
     </>
   );
 }
-
 
 function refresh() {
   throw new Error("Function not implemented.");

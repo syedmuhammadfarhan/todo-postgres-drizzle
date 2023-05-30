@@ -22,7 +22,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     const req = await request.json()
-    
+  
     try {
         if (req.task) {
             const resPOST = await db.insert(todoTable).values(
@@ -44,11 +44,12 @@ export async function POST(request: NextRequest) {
 
 export async function DELETE(request: NextRequest) {
     
+    const req = await request.json()
+    
     try {
-        const req = await request.json()
         if (req.id) {
-            const resDELETE = await db.delete(todoTable).where(eq(todoTable.id,req.id)).returning();
-            return NextResponse.json(resDELETE);  
+            const resDELETE = await db.delete(todoTable).where((req.id=id)).returning();
+            return NextResponse.json(req.id)
         }
     } catch (error) {
         console.log((error as {message: string}).message)
