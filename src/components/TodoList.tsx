@@ -47,9 +47,9 @@ export default async function TodoList() {
     console.log(`this is`, id);
     try {
       if (id) {
-        const response = await fetch("/api/todo", {
+        const response = await fetch(`/api/todo/${id}`, {
           method: "DELETE",
-          body: JSON.stringify({ id: id.id,}),
+          // body: JSON.stringify({ id: id.id,}),
           headers: {
             "Content-Type": "application/json",
           },
@@ -81,7 +81,7 @@ export default async function TodoList() {
                 size={22}
                 type="button"
                 onClick={() => {
-                  handleDelete({ id: items.id });
+                  handleDelete(items.id);
                 }}
               />
             </div>

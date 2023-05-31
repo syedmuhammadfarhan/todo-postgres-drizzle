@@ -5,7 +5,7 @@ import { sql } from "@vercel/postgres"
 import { eq } from "drizzle-orm";
 
 
-export async function GET(request: NextRequest) {
+export async function GET(request: NextRequest,) {
    
     try {
         await sql`CREATE TABLE IF NOT EXISTS Todos(id serial primary key, Task varchar(255))`
@@ -42,13 +42,13 @@ export async function POST(request: NextRequest) {
 }
 
 
-export async function DELETE(request: NextRequest) {
+export async function DELETE(request: NextRequest, id:any) {
     
-    const req = await request.json()
+    // const id = await request.json()
     
     try {
-        if (req.id) {
-            const resDELETE = await db.delete(todoTable).where(eq(todoTable.id,req.id)).returning();
+        if (id) {
+        const resDELETE = await db.delete(todoTable).where(eq(todoTable.id, id)).returning();
             return NextResponse.json(resDELETE)
         }
     } catch (error) {
