@@ -32,6 +32,7 @@ export default function AddTodo() {
           onChange={(e) => setTask({ task: e.target.value })}
           className="rounded-full w-full py-3.5 px-5 border focus:outline-secondary"
           type="text"
+          required
         />
         <button
           type="submit"
