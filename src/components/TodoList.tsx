@@ -9,9 +9,9 @@ const getData = async () => {
     const res = await fetch("http://localhost:3000/api/todo", {
       method: "GET",
       cache: "no-store",
-      headers: {
-          "Content-Type": "application/json"
-      }
+      // headers: {
+      //     "Content-Type": "application/json"
+      // }
     });
     if (!res.ok) {
       throw new Error("Failed to fetch data");
