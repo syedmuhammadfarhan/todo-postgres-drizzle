@@ -9,9 +9,9 @@ const getData = async () => {
     const res = await fetch("http://localhost:3000/api/todo", {
       method: "GET",
       cache: "no-store",
-      // headers: {
-      //     "Content-Type": "application/json"
-      // }
+      headers: {
+          "Content-Type": "application/json"
+      }
     });
     if (!res.ok) {
       throw new Error("Failed to fetch data");
@@ -27,7 +27,6 @@ export default async function TodoList() {
   const res: Todo[] = await getData();
 
   const handleDelete = async (id: any) => {
-    console.log(`this is`, id);
     try {
       if (id) {
         const response = await fetch(`/api/${id}`, {
@@ -36,12 +35,12 @@ export default async function TodoList() {
             "Content-Type": "application/json",
           },
         });
-        refresh();
 
-        // if (response.ok) {
-        // } else {
-        //   console.log("Delete request failed with status:", response.status);
-        // }
+        if (response.ok) {
+          refresh();
+        } else {
+          console.log("Delete request failed with status:", response.status);
+        }
       }
     } catch (error) {
       console.log("An error occurred during the delete request:", error);
@@ -73,4 +72,3 @@ export default async function TodoList() {
     </>
   );
 }
-
