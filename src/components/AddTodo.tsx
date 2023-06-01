@@ -9,6 +9,7 @@ export default function AddTodo() {
   const { refresh } = useRouter();
 
   const handleSubmit = async () => {
+    
     try {
       if (task) {
         const res = await fetch("/api/todo", {
@@ -34,7 +35,7 @@ export default function AddTodo() {
         />
         <button
           type="submit"
-        //   onClick={handleSubmit}
+          //   onClick={handleSubmit}
           className="p-4 shrink-0 rounded-full bg-gradient-to-b from-primary to-secondary"
         >
           <Image src={"/vector.png"} width={20} height={20} alt="vector" />

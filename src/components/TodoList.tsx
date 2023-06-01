@@ -7,11 +7,11 @@ import { useRouter } from "next/navigation";
 const getData = async () => {
   try {
     const res = await fetch("http://localhost:3000/api/todo", {
-      // method: "GET",
+      method: "GET",
       cache: "no-store",
-      // headers: {
-      //     "Content-Type": "application/json"
-      // }
+      headers: {
+          "Content-Type": "application/json"
+      }
     });
     if (!res.ok) {
       throw new Error("Failed to fetch data");
@@ -25,41 +25,23 @@ const getData = async () => {
 export default async function TodoList() {
   const { refresh } = useRouter();
   const res: Todo[] = await getData();
-  // console.log(res);
 
-  // const handleDelete = async (id:any) => {
-  //   try {
-  //     if (id) {
-  //       const res = await fetch("/api/todo", {
-  //         method: "DELETE",
-  //         body: JSON.stringify({ id }),
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //         },
-  //       });
-  //       refresh();
-  //     }
-  //   } catch (error) {
-  //     console.log("error");
-  //   }
-  // };
   const handleDelete = async (id: any) => {
     console.log(`this is`, id);
     try {
       if (id) {
-        const response = await fetch(`/api/todo/${id}`, {
+        const response = await fetch(`/api/${id}`, {
           method: "DELETE",
-          // body: JSON.stringify({ id: id.id,}),
           headers: {
             "Content-Type": "application/json",
           },
         });
+        refresh();
 
-        if (response.ok) {
-          refresh();
-        } else {
-          console.log("Delete request failed with status:", response.status);
-        }
+        // if (response.ok) {
+        // } else {
+        //   console.log("Delete request failed with status:", response.status);
+        // }
       }
     } catch (error) {
       console.log("An error occurred during the delete request:", error);

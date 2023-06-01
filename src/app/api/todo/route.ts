@@ -1,8 +1,7 @@
-// import { db } from "@vercel/postgres";
 import { NextRequest, NextResponse } from "next/server";
-import { Todo, db, todoTable } from "@/lib/drizzle"
+import {db, todoTable } from "@/lib/drizzle"
 import { sql } from "@vercel/postgres"
-import { eq } from "drizzle-orm";
+
 
 
 export async function GET(request: NextRequest,) {
@@ -39,21 +38,4 @@ export async function POST(request: NextRequest) {
         
     }
 
-}
-
-
-export async function DELETE(request: NextRequest, id:any) {
-    
-    // const id = await request.json()
-    
-    try {
-        if (id) {
-        const resDELETE = await db.delete(todoTable).where(eq(todoTable.id, id)).returning();
-            return NextResponse.json(resDELETE)
-        }
-    } catch (error) {
-        console.log((error as {message: string}).message)
-        return NextResponse.json({message: (error as {message: string}).message})
-    }
-    
 }
