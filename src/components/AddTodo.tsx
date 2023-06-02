@@ -26,7 +26,7 @@ export default function AddTodo() {
   };
 
   return (
-    <div>
+    <div className="mt-6">
       <form className="w-full flex gap-x-3" onSubmit={handleSubmit}>
         <input
           onChange={(e) => setTask({ task: e.target.value })}

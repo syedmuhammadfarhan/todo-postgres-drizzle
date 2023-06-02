@@ -48,11 +48,11 @@ export default async function TodoList() {
   };
 
   return (
-    <>
-      {res.map((items, i) => (
+    <div className="max-h-[300px] overflow-auto scroll-smooth">
+      {res?.map((items, i) => (
         <div
           key={i}
-          className="bg-red-100 px-2 py-3 flex items-center shadow rounded-lg gap-x-2 mb-5"
+          className="bg-white px-2 py-3 flex items-center shadow rounded-lg gap-x-2 mb-6 mr-2"
         >
           <div className="h-2.5 w-2.5 rounded-full bg-secondary"></div>
           <div className="flex justify-between items-center w-full">
@@ -69,6 +69,6 @@ export default async function TodoList() {
           </div>
         </div>
       ))}
-    </>
+    </div>
   );
 }
