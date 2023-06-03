@@ -4,14 +4,15 @@ import React from "react";
 import { MdDelete } from "react-icons/md";
 import { useRouter } from "next/navigation";
 
-const getData = async () => {
+const BASE_URL =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:3000"
+    : "https://todo-postgres-blue.vercel.app";
+
+async function getData() {
   try {
-    const res = await fetch("http://localhost:3000/api/todo", {
-      method: "GET",
+    const res = await fetch(`${BASE_URL}/api/todo`, {
       cache: "no-store",
-      headers: {
-          "Content-Type": "application/json"
-      }
     });
     if (!res.ok) {
       throw new Error("Failed to fetch data");
@@ -20,7 +21,7 @@ const getData = async () => {
   } catch (error) {
     console.log((error as { message: string }).message);
   }
-};
+}
 
 export default async function TodoList() {
   const { refresh } = useRouter();

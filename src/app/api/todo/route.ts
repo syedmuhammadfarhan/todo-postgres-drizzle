@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import {db, todoTable } from "@/lib/drizzle"
 import { sql } from "@vercel/postgres"
+import { eq } from "drizzle-orm";
 
 
 
