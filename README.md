@@ -18,7 +18,7 @@ App is deployed in vercel.
 
 ### Screenshot
 
-![Screenshot of TODO APP](/public/screenshot.png)
+![Screenshot of TODO APP](/public/Screenshot.png)
 
 
 
