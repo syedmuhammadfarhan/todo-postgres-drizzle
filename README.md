@@ -11,6 +11,15 @@
 
 
 ##  🌐Demo 
+### Link
+
+App is deployed in vercel.
+- [Live URL](https://todo-postgres-blue.vercel.app)
+
+
+### Screenshot
+
+![Screenshot of TODO APP](/public/screenshot.png)
 
 https://todo-postgres-blue.vercel.app
 
